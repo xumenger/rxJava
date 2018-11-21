@@ -18,6 +18,11 @@ public class Observable<T>
         onSubscribe.call(subscriber);
     }
 
+    /**
+     * map 操作符的作用是将T 类型的Event 转化为R 类型
+     * 转化策略抽象成Transformer<T, R> 这一个函数接口，由外部传入
+     * RxJava 中用的是Func1<T, R>
+     */
     public <R> Observable<R> map(Transformer<? super T, ?extends R> transformer)
     {
         return create(new OnSubscribe<R>()
@@ -59,3 +64,4 @@ public class Observable<T>
         R call(T from);
     }
 }
+

@@ -2,8 +2,7 @@ public class Test2
 {
     public static void main(String[] args)
     {
-        Observable.create(new Observable.OnSubscribe<Integer>() 
-        {
+        Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber)
             {
@@ -12,15 +11,13 @@ public class Test2
                     subscriber.onNext(i);
                 }
             }
-        }).map(new Observable.Transformer<Integer, String>()
-        {
+        }).map(new Observable.Transformer<Integer, String>(){
              @Override
              public String call(Integer from)
              {
                  return "maping " + from;
              }
-        }).subscribe(new Subscriber<String>() 
-        {
+        }).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted()
             {

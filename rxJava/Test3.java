@@ -1,4 +1,4 @@
-public class Test1
+public class Test3
 {
     public static void main(String[] args)
     {
@@ -6,12 +6,12 @@ public class Test1
             @Override
             public void call(Subscriber<? super Integer> subscriber)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    subscriber.onNext(i);
-                }
+                System.out.println("OnSubscribe@ " + Thread.currentThread().getName());
+                subscriber.onNext(1);
             }
-        }).subscribe(new Subscriber<Integer>() {
+        }).subscribeOn(Schedulers.io())
+        .subscribe(new Subscriber<Integer>() {
+            
             @Override
             public void onCompleted()
             {
@@ -27,6 +27,7 @@ public class Test1
             @Override
             public void onNext(Integer var1)
             {
+                System.out.println("Subscriber@ "+Thread.currentThread().getName());
                 System.out.println(var1);
             }
         });
